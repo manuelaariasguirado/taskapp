@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useStore = defineStore("storeId", {
+export const useAuthStore = defineStore('auth', {
   // arrow function recommended for full type inference
   state: () => {
     return {
@@ -11,7 +11,9 @@ export const useStore = defineStore("storeId", {
     };
   },
   actions: {
-    login() {
+    login(id) {
+      this.isAuth = true;
+      this.id = id;
       // TODO cambiar el estado de autenticacion e id del usuario
     },
 
