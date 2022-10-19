@@ -26,7 +26,7 @@ export const newTask = async (task) => {
 const response = await supabase.from('task')
     .insert({
     // TODO IDENTIFICAR LA RESPUESTAS Y RETORNAR LO QUE NECESITEMOS EJE. SE SE HA INSERTADO EL REGISTRO Y SALSE SI NO
-    console.log(response)
+
 })
 console.log(response)
 }
