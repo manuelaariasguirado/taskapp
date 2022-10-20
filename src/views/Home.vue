@@ -2,7 +2,7 @@
     <!-- BOTON NUEVA TAREA -->
         <button @click="onClick()" v-if="!show">Add task</button>
 
-    <!-- AÑADIR TAREA -->
+    <!-- FORMULARIO DE AÑADIR TAREA -->
     <div v-if="show" class="max-w-2xl mx-auto">
 	<div
 		class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -24,12 +24,10 @@
 						</div>
 						<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
                         <button type="submit" @click="onClick()" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancell</button>
-
 		</form>
 	</div>
-
     </div>
-    <!-- TAREAS -->
+    <!-- TAREAS YA CREADAS -->
     <div class="mx-auto container py-20 px-6">
             <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <div class="rounded">
