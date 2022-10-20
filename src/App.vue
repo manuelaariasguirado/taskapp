@@ -1,5 +1,6 @@
 <template>
   <ul>
+    <!-- TODO ESTO LO TENGO QUE BORRAR CUANDO TERMINE -->
     <li>
       <router-link :to="{name: 'home'}">Home</router-link>
     </li>
@@ -12,16 +13,17 @@
   </ul>
   <router-view></router-view>
 </template>
+
 <script setup>
-import { onMounted } from 'vue';
-import { createClient } from '@supabase/supabase-js'
-// import { login, newtask } from './api'
 
+// import { onMounted } from 'vue';
+// import { useRouter } from 'vue-router';
 
-//   TODO IDENTIFICAR EL RESULT Y RETORCAR LO QUE NOS INTERESA
-// console.log(response)
+// const router = useRouter()
 
-
+// onMounted(async() => {
+//   router.push({name: 'login'})
+// }
 
 // onMounted(async() => {
 //   const id = await login('m.manuelaarias@gmail.com', '1234567');
@@ -30,7 +32,6 @@ import { createClient } from '@supabase/supabase-js'
 //     title: 'Titulo',
 //     description: 'Descripcion de otro task'
 //   })
-
 // })
 
 </script>
