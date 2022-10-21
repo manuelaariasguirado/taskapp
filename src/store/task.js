@@ -1,17 +1,19 @@
 import { defineStore } from "pinia";
-import { deleteTask, updateTask } from "../api";
+import { deleteTask, getTasks, updateTask } from "../api";
 
-export const useTaskSote = defineStore("task", {
+export const usTaskStore = defineStore("task", {
   // arrow function recommended for full type inference
   state: () => {
     return {
       // guardar los task que nos da supabase
-      task: []
+      tasks: []
     };
   },
   actions: {
-    setTask(){
-    // TODO guardar en el estado las task que nos de supabase
+    async setTask (){
+      this.tasks = await getTasks()
+      console.log(this.task)
+      //guardar en el estado las task que nos de supabase
     },
 
     updateTask(id, task){
@@ -24,9 +26,14 @@ export const useTaskSote = defineStore("task", {
         // encontrar el indica de ese id y eliminaos ese indice de la array
     },
 
-    addTask(task){
-        // TODO modificar el estado de task haciendo un push de la task
-        // comprobar que tenemos el id al insertar el registro en caso de no tenerlo tendriamos que hacer e gettask
+    addTask(title,message){
+        const task = {
+          id: this.tasks.length + 1,
+          title,
+          message,
+          date: new Date()
+        }
+        this.tasks.push(task);
     }
   },
 });

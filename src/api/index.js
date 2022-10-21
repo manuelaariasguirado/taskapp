@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { useAuthStore } from "../store/auth";
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -22,13 +23,11 @@ export const login = async (email,password) => {
     return response.data.user.id
   }
 
-export const newTask = async (task) => {
+export const newTask = async (title, description) => {
 const response = await supabase.from('task')
-    .insert({
-    // TODO IDENTIFICAR LA RESPUESTAS Y RETORNAR LO QUE NECESITEMOS EJE. SE SE HA INSERTADO EL REGISTRO Y SALSE SI NO
-
-})
-console.log(response)
+    .insert([
+      { title: title, description: description, user_id: useAuthStore().id },
+    ])
 }
 
 export const getTasks = async () => {
@@ -36,8 +35,8 @@ export const getTasks = async () => {
       .from('task')
       .select('*')
       .order('id', { ascending: false })
-    console.log(response)
-    // TODO RETORNAR LA INFORMACION DE LOS TASK EJ Response.DATA
+    console.log(response.data)
+    return response.data
   }
 
 

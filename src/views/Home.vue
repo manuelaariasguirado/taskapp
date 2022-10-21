@@ -6,35 +6,37 @@
     <div v-if="show" class="max-w-2xl mx-auto">
 	<div
 		class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-		<form @submit.prevent="onLogin()" class="space-y-6" action="#">
+		<form @submit.prevent="onSubmit()" class="space-y-6" action="#">
 			<h3 class="text-xl font-medium text-gray-900 dark:text-white">Add your task</h3>
 			<div>
-				<label for="email" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Title</label>
-				<input type="email" name="email" id="email" v-model="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Write the title" required="">
+				<label for="text" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Title</label>
+				<input type="text" name="titletask" id="titletask" v-model="title" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Write the title" required="">
             </div>
-				<div>
-					<label for="password" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Description</label>
-					<input type="password" name="password" id="password" v-model="password" placeholder="Description of the project" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required="">
-                </div>
+			<div>
+				<label for="text" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Description</label>
+				<input type="text" name="descriptiontask" id="descriptiontask" v-model="description" placeholder="Description of the project" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required="">
+            </div>
 					<div class="flex items-start">
 						<div class="flex items-start">
 						</div>
-							<!-- <a href="#" class="text-sm text-blue-700 hover:underline ml-auto dark:text-blue-500">Lost
-								Password?</a> -->
 						</div>
 						<button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
                         <button type="submit" @click="onClick()" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancell</button>
 		</form>
 	</div>
     </div>
+
+    <Task v-for="task in taskStore.tasks" :task="task" />
+
     <!-- TAREAS YA CREADAS -->
     <div class="mx-auto container py-20 px-6">
             <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <div class="rounded">
                     <div class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4">
                         <div>
-                            <h4 class="text-gray-800 dark:text-gray-100 font-bold mb-3">13 things to work on</h4>
-                            <p class="text-gray-800 dark:text-gray-100 text-sm">Our interior design experts work with you to create the space that you have been dreaming about.</p>
+                            <!-- <Task :title="props.task.title" /> -->
+                            <!-- <Task :message="props.task.message" /> -->
+                            <p >Our interior design experts work with you to create the space that you have been dreaming about.</p>
                         </div>
                         <div>
                             <div class="flex items-center justify-between text-gray-800 dark:text-gray-100">
@@ -319,16 +321,36 @@
                 </div>
             </div>
         </div>
+
+    <!-- TODO -->
+    <!-- <div v-if="show">
+        <Task />
+    </div> -->
+
 </template>
 <script setup>
-import newTask from '../components/newTask.vue';
 import { ref } from 'vue';
+import Task from '../components/Task.vue';
+import { PostgrestTransformBuilder } from '@supabase/postgrest-js';
+import { newTask } from '../api/index'
+import { usTaskStore } from '../store/task'
 
 const show = ref(false);
+const title = ref();
+const description = ref();
 
-const onClick = () =>{
+const onClick = () => {
     show.value = !show.value
 }
+
+const onSubmit = async () => {
+    const response = await newTask(title.value, description.value)
+    console.log(title.value)
+}
+
+const taskStore = usTaskStore()
+
+taskStore.setTask()
 
 </script>
 <style scoped>
