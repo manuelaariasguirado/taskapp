@@ -6,7 +6,6 @@
         <h4 class="text-gray-800 dark:text-gray-100 font-bold mb-3">{{task.title}}</h4>
     </header>
     <div>
-        <!-- TODO PROFE-->
         <!-- DESCRIPCION TASK -->
         <p class="text-gray-800 dark:text-gray-100 text-sm">
         {{task.message}}
