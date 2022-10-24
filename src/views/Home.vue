@@ -91,6 +91,8 @@ const onSubmit = async () => {
   const response = await newTask(title.value, description.value);
   taskStore.addTask(title.value, description.value);
   console.log(title.value);
+  title.value = '',
+  description.value = ''
 };
 
 taskStore.setTask();
