@@ -22,18 +22,15 @@ export const usTaskStore = defineStore("task", {
     },
 
     deleteTask(id){
-        // TODO el estado modificando esa task
         // encontrar el indica de ese id y eliminaos ese indice de la array
+        const i = this.tasks.findIndex(task => task.id == id)
+        this.tasks.splice(i, 1);
+        // llamar a supabase para que borre
+
     },
 
     addTask(title,description){
-        const task = {
-          id: this.tasks.length + 1,
-          title,
-          description,
-          date: new Date()
-        }
-        this.tasks.push(task);
+      this.setTask()
     }
-  },
-});
+  }
+})

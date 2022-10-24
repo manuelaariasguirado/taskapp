@@ -26,7 +26,7 @@ export const login = async (email,password) => {
 export const newTask = async (title, description) => {
 const response = await supabase.from('task')
     .insert([
-      { title: title, description: description, user_id: useAuthStore().id },
+      { title: title, description: description, user_id: useAuthStore().id},
     ])
 }
 

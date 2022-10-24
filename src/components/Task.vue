@@ -9,10 +9,10 @@
                         <p>{{props.task.description}}</p>
                     </div>
                     <div>
+                        <p class="text-sm">{{date}}</p>
                         <div class="flex items-center justify-between text-gray-800 dark:text-gray-100">
-                            <p class="text-sm">{{date}}</p>
                             <!-- CHECK DONE -->
-                            <button
+                            <button @click="checkTask()" id="check-note"
                                 class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                                 aria-label="check note" role="button">
                                 <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -23,7 +23,7 @@
                                 </svg> </button>
                             <!-- MODIFICAR -->
                             <button
-                                class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                                class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black" id="edit-note"
                                 aria-label="edit note" role="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil"
                                     width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -34,7 +34,7 @@
                                 </svg>
                             </button>
                             <!-- BORRAR -->
-                            <button
+                            <button @click="eliminar()"
                                 class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                                 aria-label="delete note" role="button">
                                 <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -54,14 +54,34 @@
 </template>
 <script setup>
 
-import { defineProps, computed } from "vue";
+import { defineProps, computed } from 'vue';
+import { usTaskStore } from '../store/task';
+import { deleteTask } from '../api';
+
+const taskStore = usTaskStore();
 const props = defineProps({
-    task: Object,
-});
+    task: Object
+})
 
-// src="https://kit.fontawesome.com/abe21c287f.js" crossorigin="anonymous">;
+const eliminar = async () =>{
+    const response = await deleteTask(props.task.id) // esto borra de supabase
+    taskStore.deleteTask(props.task.id) // esto borra de la web
+}
 
+const checkTask = () =>{
+    const checkBoton = document.querySelector('.w-full')
+    checkBoton.classList.toggle('chequeado')
+}
+
+    const editar = () =>{
+
+    }
+const date = computed(() => props.task.created_at.toLocaleString())
 </script>
 <style scoped>
+
+.chequeado{
+    background-color: blueviolet;
+}
 
 </style>

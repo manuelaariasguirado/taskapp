@@ -19,24 +19,16 @@
 <script setup>
 
 import Navbar from './components/Navbar.vue';
+import { useAuthStore } from './store/auth';
+import { useRouter } from 'vue-router';
 
-// import { onMounted } from 'vue';
-// import { useRouter } from 'vue-router';
+const authStore = useAuthStore();
+const router = useRouter();
 
-// const router = useRouter()
+if (authStore.isAuth === false){ 
+  router.push({name: 'login'})
+}
 
-// onMounted(async() => {
-//   router.push({name: 'login'})
-// }
-
-// onMounted(async() => {
-//   const id = await login('m.manuelaarias@gmail.com', '1234567');
-//   newTask({
-//     user_id: id,
-//     title: 'Titulo',
-//     description: 'Descripcion de otro task'
-//   })
-// })
 
 </script>
 <style scoped>
