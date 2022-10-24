@@ -26,11 +26,11 @@ export const usTaskStore = defineStore("task", {
         // encontrar el indica de ese id y eliminaos ese indice de la array
     },
 
-    addTask(title,message){
+    addTask(title,description){
         const task = {
           id: this.tasks.length + 1,
           title,
-          message,
+          description,
           date: new Date()
         }
         this.tasks.push(task);

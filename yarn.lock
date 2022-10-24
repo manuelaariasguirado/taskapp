@@ -617,7 +617,14 @@
   "resolved" "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz"
   "version" "2.3.0"
 
-"pinia@^2.0.23":
+"pinia-plugin-persist@^1.0.0":
+  "integrity" "sha512-M4hBBd8fz/GgNmUPaaUsC29y1M09lqbXrMAHcusVoU8xlQi1TqgkWnnhvMikZwr7Le/hVyMx8KUcumGGrR6GVw=="
+  "resolved" "https://registry.npmjs.org/pinia-plugin-persist/-/pinia-plugin-persist-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "vue-demi" "^0.12.1"
+
+"pinia@^2.0.0", "pinia@^2.0.23":
   "integrity" "sha512-N15hFf4o5STrxpNrib1IEb1GOArvPYf1zPvQVRGOO1G1d74Ak0J0lVyalX/SmrzdT4Q0nlEFjbURsmBmIGUR5Q=="
   "resolved" "https://registry.npmjs.org/pinia/-/pinia-2.0.23.tgz"
   "version" "2.0.23"
@@ -844,6 +851,11 @@
   "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.13.11.tgz"
   "version" "0.13.11"
 
+"vue-demi@^0.12.1":
+  "integrity" "sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q=="
+  "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.12.5.tgz"
+  "version" "0.12.5"
+
 "vue-router@^4.1.5":
   "integrity" "sha512-IsvoF5D2GQ/EGTs/Th4NQms9gd2NSqV+yylxIyp/OYp8xOwxmU8Kj/74E9DTSYAyH5LX7idVUngN3JSj1X4xcQ=="
   "resolved" "https://registry.npmjs.org/vue-router/-/vue-router-4.1.5.tgz"
@@ -851,7 +863,7 @@
   dependencies:
     "@vue/devtools-api" "^6.1.4"
 
-"vue@^2.6.14 || ^3.2.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.37", "vue@3.2.41":
+"vue@^2.0.0 || >=3.0.0", "vue@^2.6.14 || ^3.2.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.37", "vue@3.2.41":
   "integrity" "sha512-uuuvnrDXEeZ9VUPljgHkqB5IaVO8SxhPpqF2eWOukVrBnRBx2THPSGQBnVRt0GrIG1gvCmFXMGbd7FqcT1ixNQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.41.tgz"
   "version" "3.2.41"

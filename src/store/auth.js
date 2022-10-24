@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 
+
 export const useAuthStore = defineStore('auth', {
   // arrow function recommended for full type inference
   state: () => {
@@ -21,4 +22,12 @@ export const useAuthStore = defineStore('auth', {
       // TODO cambiar el estado de autenticacion e id del usuario
     },
   },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key:'user',
+        storage: localStorage,      }
+    ]
+  }
 });

@@ -1,4 +1,6 @@
 <template>
+  <Navbar />
+
   <ul>
     <!-- TODO ESTO LO TENGO QUE BORRAR CUANDO TERMINE -->
     <li>
@@ -15,6 +17,8 @@
 </template>
 
 <script setup>
+
+import Navbar from './components/Navbar.vue';
 
 // import { onMounted } from 'vue';
 // import { useRouter } from 'vue-router';

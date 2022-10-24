@@ -16,11 +16,6 @@ const routes = [
         name: 'register',
         component: () => import('../views/Register.vue')
     },
-    // {
-    //     path: '/newTask',
-    //     name: 'newTask',
-    //     component: () => import('../components/newTask')
-    // },
 ]
 
 const router = createRouter({
