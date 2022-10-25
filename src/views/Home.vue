@@ -3,9 +3,13 @@
     <div class="main">
         <button class="btn btn-blue addtask" @click="onClick()" v-if="!show">Add a new task :)</button>
     </div>
-    <div class="secondary">
-        <button class="todo" @click="onClick()">To-do</button>
-        <button class="done">Done</button>
+    <div class="container">
+        <div class="columnleft">
+            <button class="todo" @click="onClick()">To-do</button>
+        </div>
+        <div class="columnright">
+            <button class="done">Done</button>
+        </div>
     </div>
 
     <!-- FORMULARIO DE AÑADIR TAREA -->
@@ -46,6 +50,7 @@
         </div>
     </div>
 
+    
     <!-- MOSTRAR TAREAS -->
     <Task v-for="task in taskStore.tasks" :task="task" />
 
@@ -87,6 +92,20 @@ taskStore.setTask();
 
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.columnleft {
+    background-color: red;
+}
+
+.columnright {
+    background-color: blue;
+}
+
 .todo{
     border:3px solid #FF99C8;
     border-radius: 9px;
@@ -103,10 +122,10 @@ taskStore.setTask();
     font-size: 20px;
 }
 
-.secondary {
+/* .secondary {
     display: flex;
     justify-content: space-around;
-}
+} */
 
 
 .btn {

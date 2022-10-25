@@ -3,7 +3,7 @@
         <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <div class="rounded">
                 <div
-                    class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4">
+                    class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4" :class="{chequeado: props.task.isCompleted}">
                     <div class="task">
                         <h4 class="text-gray-800 font-bold mb-3">{{props.task.title}}</h4>
                         <p>{{props.task.description}}</p>
@@ -43,7 +43,11 @@
                                         d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
                                         fill="white"></path>
                                 </svg>
-                            </button>
+                            </button> 
+                            <!-- <input @change="" type="color" v-model="props.task.color"> -->
+                            <div class="botonColor bg1" @click="changeColor('#FCF6BD')"></div>
+                            <div class="botonColor bg2" @click="changeColor('#D0F4DE')"></div>
+                            <div class="botonColor bg3" @click="changeColor('#A9DEF9')"></div>
                         </div>
                     </div>
                 </div>
@@ -56,7 +60,7 @@
 
 import { defineProps, computed } from 'vue';
 import { usTaskStore } from '../store/task';
-import { deleteTask } from '../api';
+import { deleteTask, updateTask } from '../api';
 
 const taskStore = usTaskStore();
 const props = defineProps({
@@ -68,9 +72,10 @@ const eliminar = async () =>{
     taskStore.deleteTask(props.task.id) // esto borra de la web
 }
 
+
 const checkTask = () =>{
-    const checkBoton = document.querySelector('.w-full')
-    checkBoton.classList.toggle('chequeado')
+    props.task.isCompleted = !props.task.isCompleted
+    updateTask(props.task.id, {isCompleted: props.task.isCompleted})
 }
 
     const editar = () =>{
@@ -81,12 +86,35 @@ const date = computed(() => {
     return fecha.toLocaleDateString();
 })
 
+const changeColor = (color) => {
+    props.task.color = color;
+    updateTask(props.task.id, {color: props.task.color})
+}
 
 </script>
 <style scoped>
-
-.chequeado{
-    background-color: blueviolet;
+.botonColor {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    /* border: 1px solid grey; */
 }
+
+.bg1 {
+    background-color: #FCF6BD;
+}
+
+.bg2 {
+    background-color: #D0F4DE;
+}
+
+.bg3 {
+    background-color: #A9DEF9 ;
+}
+.chequeado{ 
+    background-color: v-bind('props.task.color');
+}
+
+
 
 </style>
