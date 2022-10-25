@@ -26,6 +26,7 @@ export const login = async (email,password) => {
 export const newTask = async (title, description) => {
 const response = await supabase.from('task')
     .insert([
+      // TODO ESTO LO ESTABAMOS VIENDO CON LAURA (isCompleted:false)
       { title: title, description: description, user_id: useAuthStore().id},
     ])
 }

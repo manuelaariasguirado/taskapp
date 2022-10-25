@@ -1,6 +1,12 @@
 <template>
     <!-- BOTON NUEVA TAREA -->
-    <button @click="onClick()" v-if="!show">Add task</button>
+    <div class="main">
+        <button class="btn btn-blue addtask" @click="onClick()" v-if="!show">Add a new task :)</button>
+    </div>
+    <div class="secondary">
+        <button class="todo" @click="onClick()">To-do</button>
+        <button class="done">Done</button>
+    </div>
 
     <!-- FORMULARIO DE AÑADIR TAREA -->
     <div v-if="show" class="max-w-2xl mx-auto">
@@ -65,7 +71,7 @@ const onSubmit = async () => {
     console.log(title.value, description.value);
     taskStore.addTask(title.value, description.value);
     title.value = '',
-    description.value = ''
+        description.value = ''
 }
 
 taskStore.setTask();
@@ -74,4 +80,55 @@ taskStore.setTask();
 </script>
 <style scoped>
 
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center,
+
+}
+
+.todo{
+    border:3px solid #FF99C8;
+    border-radius: 9px;
+    padding: 20px 120px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.done{
+    border:3px solid #FF99C8;
+    border-radius: 9px;
+    padding: 20px 120px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.secondary {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.btn {
+    @apply font-bold py-2 px-4 rounded;
+}
+
+.btn-blue {
+    @apply bg-blue-500 text-white;
+}
+
+.addtask {
+    background-color: #FF99C8;
+    padding: 20px 120px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.addtask:hover {
+    background-color: #FF5CA8 !important;
+}
+
+.btn-blue:hover {
+    @apply bg-blue-700;
+}
 </style>

@@ -76,7 +76,12 @@ const checkTask = () =>{
     const editar = () =>{
 
     }
-const date = computed(() => props.task.created_at.toLocaleString())
+const date = computed(() => {
+    const fecha = new Date(props.task.created_at)
+    return fecha.toLocaleDateString();
+})
+
+
 </script>
 <style scoped>
 
