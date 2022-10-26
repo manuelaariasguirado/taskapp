@@ -1,7 +1,7 @@
 <template>
     <!-- BOTON NUEVA TAREA -->
     <div class="main">
-        <button class="btn btn-blue addtask buttonfill" @click="onClick()" v-if="!show">Add a new task :)</button>
+        <button class="btn btn-blue addtask buttonfill" @click="onClick()" v-if="!show">Add a new task 😊✍️</button>
     </div>
         <!-- FORMULARIO DE AÑADIR TAREA -->
     <div v-if="show" class="max-w-2xl mx-auto">
@@ -42,14 +42,14 @@
     </div>
     <div class="alltasks">
         <div class="columnleft">
-            <button class="todo" @click="onClick()">To-do</button>
+            <button class="todo">To-do</button>
             <!-- MOSTRAR TODAS LAS TAREAS -->
             <div v-for="task in taskStore.tasks">
                 <Task :task="task" v-if="task.isCompleted == false" class="flex justify-center" />
             </div>
         </div>
         <div class="columnright">
-            <button class="done">Done</button>
+            <button class="done">Done ✅</button>
             <!-- MOSTRAR LAS TAREAS COMPLETADAS-->
             <div v-for="task in taskStore.tasks">
                 <Task  :task="task" v-if="task.isCompleted == true" class="flex justify-center" />
@@ -132,16 +132,18 @@ taskStore.setTask();
     border-radius: 9px;
     padding: 10px 120px;
     margin: 20px;
-    font-size: 20px;
+    font-size: 15px;
+    font-weight: 600;
 }
 
-.done{
+.done {
     border:1px solid #9DA3AE;
     color: #212936;
     border-radius: 9px;
     padding: 10px 120px;
     margin: 20px;
-    font-size: 20px;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .btn {
@@ -155,14 +157,14 @@ taskStore.setTask();
 .addtask {
     padding: 20px 120px;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .buttonfill{
 	background-color: #212936;
 }
 .buttonfill:hover {
-    background-color: #6A14A3 !important;
+    background-color: #8F14E1 !important;
 }
 
 .btn-blue:hover {

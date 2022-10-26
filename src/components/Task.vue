@@ -9,8 +9,10 @@
                         <p>{{props.task.description}}</p>
                     </div>
                     <div>
-                        <p class="text-sm">{{date}}</p>
-                        <div class="botoncitos flex items-center justify-around text-gray-800 dark:text-gray-100">
+                        <div class="botoncitos flex items-center justify-end text-gray-800 dark:text-gray-100 gap-1">
+                            <div class="flex items-center justify-between">
+                                <p class="text-sm">{{date}}</p>
+                            </div>
                             <!-- CHECK DONE -->
                             <button @click="checkTask()" id="check-note"
                                 class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
@@ -79,7 +81,7 @@ const checkTask = () => {
 }
 
 const editar = () => {
-    
+
 
 }
 const date = computed(() => {
@@ -98,7 +100,7 @@ const changeColor = (color) => {
     width: 30px;
     height: 30px;
     border-radius: 50px;
-    border: 1px solid black;
+    border: 1px solid #9DA3AE;
 }
 
 .bg1 {
@@ -128,8 +130,8 @@ const changeColor = (color) => {
 }
 
 .botoncitos {
-    /* background-color: red; */
-    padding-top: 7px;
-    margin: 0;
+    background-color: red;
+    padding-top: 15px;
+    margin:0;
 }
 </style>
