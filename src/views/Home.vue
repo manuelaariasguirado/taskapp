@@ -1,20 +1,9 @@
 <template>
     <!-- BOTON NUEVA TAREA -->
     <div class="main">
-        <button class="btn btn-blue addtask" @click="onClick()" v-if="!show">Add a new task :)</button>
+        <button class="btn btn-blue addtask buttonfill" @click="onClick()" v-if="!show">Add a new task :)</button>
     </div>
-    <div class="alltasks">
-        <div class="columnleft">
-            <button class="todo" @click="onClick()">To-do</button>
-            <!-- MOSTRAR TAREAS -->
-            <Task v-for="task in taskStore.tasks" :task="task" />
-        </div>
-        <div class="columnright">
-            <button class="done">Done</button>
-        </div>
-    </div>
-
-    <!-- FORMULARIO DE AÑADIR TAREA -->
+        <!-- FORMULARIO DE AÑADIR TAREA -->
     <div v-if="show" class="max-w-2xl mx-auto">
         <div
             class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -51,10 +40,23 @@
             </form>
         </div>
     </div>
+    <div class="alltasks">
+        <div class="columnleft">
+            <button class="todo" @click="onClick()">To-do</button>
+            <!-- MOSTRAR TODAS LAS TAREAS -->
+            <div v-for="task in taskStore.tasks">
+                <Task :task="task" v-if="task.isCompleted == false" class="flex justify-center" />
+            </div>
+        </div>
+        <div class="columnright">
+            <button class="done">Done</button>
+            <!-- MOSTRAR LAS TAREAS COMPLETADAS-->
+            <div v-for="task in taskStore.tasks">
+                <Task  :task="task" v-if="task.isCompleted == true" class="flex justify-center" />
+            </div>
 
-    
-    
-    
+        </div>
+    </div>
 
 
 </template>
@@ -100,7 +102,7 @@ taskStore.setTask();
 }
 
 .alltasks {
-    background-color: beige;
+    /* background-color: black; */
     display: flex;
     justify-content:center;
     align-items: flex-start;
@@ -108,28 +110,37 @@ taskStore.setTask();
 
 .columnleft {
     /* background-color: red; */
+    width: 50%;
     margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .columnright {
-    background-color: blue;
+    /* background-color: blue; */
+    width: 50%;
     margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .todo{
-    border:3px solid #FF99C8;
+    border:1px solid #9DA3AE;
+    color: #212936;
     border-radius: 9px;
-    padding: 20px 120px;
+    padding: 10px 120px;
     margin: 20px;
     font-size: 20px;
-    /* width: 250px; */
 }
 
 .done{
-    border:3px solid #FF99C8;
+    border:1px solid #9DA3AE;
+    color: #212936;
     border-radius: 9px;
-    padding: 20px 120px;
-    margin-top: 20px;
+    padding: 10px 120px;
+    margin: 20px;
     font-size: 20px;
 }
 
@@ -142,14 +153,16 @@ taskStore.setTask();
 }
 
 .addtask {
-    background-color: #FF99C8;
     padding: 20px 120px;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 400;
 }
 
-.addtask:hover {
-    background-color: #FF5CA8 !important;
+.buttonfill{
+	background-color: #212936;
+}
+.buttonfill:hover {
+    background-color: #6A14A3 !important;
 }
 
 .btn-blue:hover {

@@ -1,16 +1,16 @@
 <template>
-    <div class="mx-auto container py-20 px-6">
+    <div class="mx-auto container py-20 px-6 m-auto">
         <div class="sizetask grid gap-6">
             <div class="rounded">
-                <div
-                    class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4" :class="{chequeado: props.task.isCompleted}">
+                <div class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4"
+                    :class="{chequeado: !props.task.isCompleted, completado: props.task.isCompleted}">
                     <div class="task">
                         <h4 class="text-gray-800 font-bold mb-3">{{props.task.title}}</h4>
                         <p>{{props.task.description}}</p>
                     </div>
                     <div>
                         <p class="text-sm">{{date}}</p>
-                        <div class="flex items-center justify-between text-gray-800 dark:text-gray-100">
+                        <div class="botoncitos flex items-center justify-around text-gray-800 dark:text-gray-100">
                             <!-- CHECK DONE -->
                             <button @click="checkTask()" id="check-note"
                                 class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
@@ -23,8 +23,8 @@
                                 </svg> </button>
                             <!-- MODIFICAR -->
                             <button
-                                class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black" id="edit-note"
-                                aria-label="edit note" role="button">
+                                class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                                id="edit-note" aria-label="edit note" role="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil"
                                     width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -43,7 +43,7 @@
                                         d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
                                         fill="white"></path>
                                 </svg>
-                            </button> 
+                            </button>
                             <!-- <input @change="" type="color" v-model="props.task.color"> -->
                             <div class="botonColor bg1" @click="changeColor('#FCF6BD')"></div>
                             <div class="botonColor bg2" @click="changeColor('#D0F4DE')"></div>
@@ -67,20 +67,21 @@ const props = defineProps({
     task: Object
 })
 
-const eliminar = async () =>{
+const eliminar = async () => {
     const response = await deleteTask(props.task.id) // esto borra de supabase
     taskStore.deleteTask(props.task.id) // esto borra de la web
 }
 
 
-const checkTask = () =>{
+const checkTask = () => {
     props.task.isCompleted = !props.task.isCompleted
-    updateTask(props.task.id, {isCompleted: props.task.isCompleted})
+    updateTask(props.task.id, { isCompleted: props.task.isCompleted })
 }
 
-    const editar = () =>{
+const editar = () => {
+    
 
-    }
+}
 const date = computed(() => {
     const fecha = new Date(props.task.created_at)
     return fecha.toLocaleDateString();
@@ -88,7 +89,7 @@ const date = computed(() => {
 
 const changeColor = (color) => {
     props.task.color = color;
-    updateTask(props.task.id, {color: props.task.color})
+    updateTask(props.task.id, { color: props.task.color })
 }
 
 </script>
@@ -109,15 +110,26 @@ const changeColor = (color) => {
 }
 
 .bg3 {
-    background-color: #A9DEF9 ;
+    background-color: #A9DEF9;
 }
-.chequeado{ 
+
+.chequeado {
     background-color: v-bind('props.task.color');
+}
+
+/* TODO METER TODOS LOS ESTILOS QUE QUIERA AQUI */
+.completado {
+    background-color: v-bind('props.task.color');
+    opacity: 0.4;
 }
 
 .sizetask {
     width: 350px;
 }
 
-
+.botoncitos {
+    /* background-color: red; */
+    padding-top: 7px;
+    margin: 0;
+}
 </style>

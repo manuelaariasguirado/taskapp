@@ -8,8 +8,9 @@
         </div>
 
         <div class="hidden sm:flex sm:items-center">
-          <a href="#" class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Sign in</a>
-          <a href="#" class="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Log Out</a>
+          <!-- <button class="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4">Sign in</button> -->
+          <!-- LOG OUT -->
+          <button @click="cerrarsesion" class="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600">Log Out</button>
         </div>
 
         <div class="sm:hidden cursor-pointer">
@@ -36,6 +37,20 @@
 </div>
 </template>
 <script setup>
+import { logOut } from "../api/index";
+import router from "../router";
+import { useAuthStore } from "../store/auth";
+
+const authStore = useAuthStore()
+
+const cerrarsesion = async() => {
+  const response = await logOut()
+  if (response) {
+    authStore.logout()
+    router.push({name:'login'})
+  }
+}
+
 </script>
 <style scoped>
 
