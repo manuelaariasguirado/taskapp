@@ -3,9 +3,11 @@
     <div class="main">
         <button class="btn btn-blue addtask" @click="onClick()" v-if="!show">Add a new task :)</button>
     </div>
-    <div class="container">
+    <div class="alltasks">
         <div class="columnleft">
             <button class="todo" @click="onClick()">To-do</button>
+            <!-- MOSTRAR TAREAS -->
+            <Task v-for="task in taskStore.tasks" :task="task" />
         </div>
         <div class="columnright">
             <button class="done">Done</button>
@@ -51,8 +53,8 @@
     </div>
 
     
-    <!-- MOSTRAR TAREAS -->
-    <Task v-for="task in taskStore.tasks" :task="task" />
+    
+    
 
 
 </template>
@@ -85,6 +87,11 @@ taskStore.setTask();
 </script>
 <style scoped>
 
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 .main {
     display: flex;
     justify-content: center;
@@ -92,26 +99,30 @@ taskStore.setTask();
 
 }
 
-.container {
+.alltasks {
+    background-color: beige;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content:center;
+    align-items: flex-start;
 }
 
 .columnleft {
-    background-color: red;
+    /* background-color: red; */
+    margin: 20px;
 }
 
 .columnright {
     background-color: blue;
+    margin: 20px;
 }
 
 .todo{
     border:3px solid #FF99C8;
     border-radius: 9px;
     padding: 20px 120px;
-    margin-top: 20px;
+    margin: 20px;
     font-size: 20px;
+    /* width: 250px; */
 }
 
 .done{
@@ -121,12 +132,6 @@ taskStore.setTask();
     margin-top: 20px;
     font-size: 20px;
 }
-
-/* .secondary {
-    display: flex;
-    justify-content: space-around;
-} */
-
 
 .btn {
     @apply font-bold py-2 px-4 rounded;

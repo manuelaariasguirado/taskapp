@@ -45,17 +45,17 @@ export const updateTask = async (taskId, task) => {
     const { data, error } = await supabase
     .from('task')
     .update(task)
-    .eq('id', 'taskId')
+    .eq('id', taskId)
 
-    //   TODO indetificar el resultaso y  retornar lo que nos interesa por ejem true si ha bien bien, flase si ha fallado
-    console.log(response)
+    console.log(error)
+
 }
 
 export const deleteTask = async (taskId) => {
     const response = await supabase
     .from('task')
     .delete()
-    .eq('id', 'taskId')
+    .eq('id', taskId)
     console.log(response)
 }
 
