@@ -1,7 +1,7 @@
 <template>
     <!-- BOTON NUEVA TAREA -->
     <div class="main">
-        <button class="btn btn-blue addtask buttonfill" @click="onClick()" v-if="!show">Add a new task 😊✍️</button>
+        <button class="btn btn-blue addtask buttonfill" @click="onClick()" v-if="!show">Add a new task 😊 </button>
     </div>
         <!-- FORMULARIO DE AÑADIR TAREA -->
     <div v-if="show" class="max-w-2xl mx-auto">
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="columnright">
-            <button class="done">Done ✅</button>
+            <button class="done">Done</button>
             <!-- MOSTRAR LAS TAREAS COMPLETADAS-->
             <div v-for="task in taskStore.tasks">
                 <Task  :task="task" v-if="task.isCompleted == true" class="flex justify-center" />

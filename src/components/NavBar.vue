@@ -64,6 +64,6 @@ const cerrarsesion = async () => {
 }
 
 .emojis {
-  font-size: 30px;
+  font-size: 20px;
 }
 </style>
