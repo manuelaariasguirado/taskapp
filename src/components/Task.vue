@@ -159,6 +159,7 @@ const changeColor = (color) => {
 
 textarea, input{
     background-color: white;
+    border: 1px solid black;
 }
 
 </style>

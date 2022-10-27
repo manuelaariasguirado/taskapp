@@ -4,57 +4,60 @@
         <button class="btn btn-blue addtask buttonfill" @click="onClick()" v-if="!show">Add a new task 😊 </button>
     </div>
     <!-- FORMULARIO DE AÑADIR TAREA -->
-        <div v-if="show" class="max-w-2xl mx-auto ">
-            <div
-                class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700 m-auto">
-                <form @submit.prevent="onSubmit()" class="space-y-6" action="#">
-                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">
-                        Let's get things done 👌
-                    </h3>
-                    <div>
-                        <label for="text"
-                            class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Title</label>
-                        <input type="text" name="titletask" id="titletask" v-model="title"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white limpiarinput"
-                            placeholder="Write the title" required="" />
-                    </div>
-                    <div>
-                        <label for="text"
-                            class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Description</label>
-                        <input type="text" name="descriptiontask" id="descriptiontask" v-model="description"
-                            placeholder="Description of the project"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            required="" />
-                    </div>
-                    <div class="flex items-start">
-                        <div class="flex items-start"></div>
-                    </div>
-                    <button type="submit"
-                        class="w-full text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center buttonfill">
-                        Save
-                    </button>
-                    <button type="submit" @click="onClick()"
-                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 buttonfill">
-                        Cancell
-                    </button>
-                </form>
+    <div v-if="show" class="max-w-2xl mx-auto ">
+        <div
+            class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700 m-auto">
+            <form @submit.prevent="onSubmit()" class="space-y-6" action="#">
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+                    Let's get things done 👌
+                </h3>
+                <div>
+                    <label for="text"
+                        class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Title</label>
+                    <input type="text" name="titletask" id="titletask" v-model="title"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white limpiarinput"
+                        placeholder="Write the title" required="" />
+                </div>
+                <div>
+                    <label for="text"
+                        class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Description</label>
+                    <input type="text" name="descriptiontask" id="descriptiontask" v-model="description"
+                        placeholder="Description of the project"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        required="" />
+                </div>
+                <div class="flex items-start">
+                    <div class="flex items-start"></div>
+                </div>
+                <button type="submit"
+                    class="w-full text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center buttonfill">
+                    Save
+                </button>
+                <button type="submit" @click="onClick()"
+                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 buttonfill">
+                    Cancell
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="fatheralltask flex items-start justify-center md:flex-row">
+        <div class="alltasks">
+            <button class="todo justify-self-center">To-do</button>
+            <div class="columnleft grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2">
+                <!-- MOSTRAR TODAS LAS TAREAS -->
+                <div v-for="task in taskStore.tasks">
+                    <Task :task="task" v-if="task.isCompleted == false" class="flex justify-center" />
+                </div>
             </div>
         </div>
-    <div class="alltasks">
-        <div class="columnleft">
-            <button class="todo">To-do</button>
-            <!-- MOSTRAR TODAS LAS TAREAS -->
-            <div v-for="task in taskStore.tasks">
-                <Task :task="task" v-if="task.isCompleted == false" class="flex justify-center" />
+        <div class="alltasks">
+            <button class="done justify-self-center">Done</button>
+            <div class="columnright grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2">
+                <!-- MOSTRAR LAS TAREAS COMPLETADAS-->
+                <div v-for="task in taskStore.tasks">
+                    <Task :task="task" v-if="task.isCompleted == true" class="flex justify-center" />
+                </div>
             </div>
-        </div>
-        <div class="columnright">
-            <button class="done">Done</button>
-            <!-- MOSTRAR LAS TAREAS COMPLETADAS-->
-            <div v-for="task in taskStore.tasks">
-                <Task :task="task" v-if="task.isCompleted == true" class="flex justify-center" />
-            </div>
-
         </div>
     </div>
 
@@ -101,29 +104,26 @@ taskStore.setTask();
 
 }
 
+.fatheralltask {
+    display: flex;
+    flex-direction: column;
+}
+
 .alltasks {
     /* background-color: yellow; */
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
 }
 
 .columnleft {
     /* background-color: red; */
-    width: 50%;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* width: 50%; */
 }
 
 .columnright {
     /* background-color: blue; */
-    width: 50%;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* width: 50%; */
 }
 
 .todo {
@@ -176,5 +176,11 @@ taskStore.setTask();
     background-color: red;
     display: flex;
     justify-content: center;
+}
+
+@media only screen and (min-width: 400px){
+    .fatheralltask {
+    flex-direction: row;
+}
 }
 </style>
