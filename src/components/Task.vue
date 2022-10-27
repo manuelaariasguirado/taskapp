@@ -4,10 +4,15 @@
             <div class="rounded">
                 <div class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4"
                     :class="{chequeado: !props.task.isCompleted, completado: props.task.isCompleted}">
-                    <div class="task">
+                    <div v-if="!show" class="task">
                         <h4 class="text-gray-800 font-bold mb-3">{{props.task.title}}</h4>
                         <p>{{props.task.description}}</p>
                     </div>
+                    <form @submit.prevent="editTask()" v-else action="">
+                        <input v-model="props.task.title" placeholder="" type="text" id="">
+                            <textarea v-model="props.task.description" name="" id="" cols="30" rows="4"></textarea>
+                            <button class="save" type="submit">Save</button>
+                    </form>
                     <div>
                         <div class="fechaeicons flex items-center text-gray-800 dark:text-gray-100 gap-1">
                             <div class="flex items-center justify-between datestyle">
@@ -25,7 +30,7 @@
                                             fill="white"></path>
                                     </svg> </button>
                                 <!-- MODIFICAR -->
-                                <button
+                                <button @click="onClick()" 
                                     class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                                     id="edit-note" aria-label="edit note" role="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil"
@@ -62,9 +67,11 @@
 </template>
 <script setup>
 
-import { defineProps, computed } from 'vue';
+import { defineProps, computed, ref } from 'vue';
 import { usTaskStore } from '../store/task';
 import { deleteTask, updateTask } from '../api';
+
+const show = ref(false)
 
 const taskStore = usTaskStore();
 const props = defineProps({
@@ -82,10 +89,15 @@ const checkTask = () => {
     updateTask(props.task.id, { isCompleted: props.task.isCompleted })
 }
 
-const editar = () => {
-
-
+const editTask = () => {
+    updateTask(props.task.id, {title: props.task.title, description: props.task.description})
+show.value = !show.value
 }
+
+const onClick = () => {
+    show.value = !show.value
+}
+
 const date = computed(() => {
     const fecha = new Date(props.task.created_at)
     return fecha.toLocaleDateString();
@@ -144,4 +156,9 @@ const changeColor = (color) => {
 .datestyle {
     /* background-color: blueviolet; */
 }
+
+textarea, input{
+    background-color: white;
+}
+
 </style>

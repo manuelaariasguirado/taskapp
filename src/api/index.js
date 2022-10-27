@@ -42,12 +42,10 @@ export const getTasks = async () => {
 
 
 export const updateTask = async (taskId, task) => {
-    const { data, error } = await supabase
+  const response = await supabase
     .from('task')
     .update(task)
     .eq('id', taskId)
-
-    console.log(error)
 
 }
 

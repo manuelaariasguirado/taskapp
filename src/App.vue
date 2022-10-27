@@ -2,8 +2,7 @@
   <NavBar />
 
   <ul>
-    <!-- TODO ESTO LO TENGO QUE BORRAR CUANDO TERMINE -->
-    <li>
+    <!-- <li>
       <router-link :to="{name: 'home'}">Home</router-link>
     </li>
     <li>
@@ -11,7 +10,7 @@
     </li>
     <li>
       <router-link :to="{name: 'register'}">Register</router-link>
-    </li>
+    </li> -->
     <!-- <li>
       <router-link :to="{name: 'intro'}">Intro</router-link>
     </li> -->
