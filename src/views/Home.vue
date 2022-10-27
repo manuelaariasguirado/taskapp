@@ -45,18 +45,22 @@
             <button class="todo justify-self-center">To-do</button>
             <div class="columnleft grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2">
                 <!-- MOSTRAR TODAS LAS TAREAS -->
-                <div v-for="task in taskStore.tasks" :key="task.id">
-                    <Task :task="task" v-if="task.isCompleted == false" class="flex justify-center" />
-                </div>
+                <template v-for="task in taskStore.tasks" :key="task.id">
+                    <div v-if="task.isCompleted == false">
+                        <Task :task="task" class="flex justify-center" />
+                    </div>
+                </template>
             </div>
         </div>
         <div class="alltasks">
             <button class="done justify-self-center">Done</button>
             <div class="columnright grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2">
                 <!-- MOSTRAR LAS TAREAS COMPLETADAS-->
-                <div v-for="task in taskStore.tasks" :key="task.id">
-                    <Task :task="task" v-if="task.isCompleted == true" class="flex justify-center" />
-                </div>
+                <template v-for="task in taskStore.tasks" :key="task.id">
+                    <div v-if="task.isCompleted == true">
+                        <Task :task="task" class="flex justify-center" />
+                    </div>
+                </template>
             </div>
         </div>
     </div>
