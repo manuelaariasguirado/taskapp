@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-auto container py-20 px-6 m-auto">
+    <div class="mx-auto container px-6 m-auto">
         <div class="sizetask grid gap-6">
             <div class="rounded">
                 <div class="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4"

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 font-sans w-full min-h-screen m-0">
+  <div class="font-sans w-full min-h-screen m-0 pb-12">
     <div class="bg-white shadow">
       <div class="container mx-auto px-4">
         <div class="flex items-center justify-between py-4">
