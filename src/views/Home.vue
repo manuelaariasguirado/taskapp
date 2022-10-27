@@ -45,7 +45,7 @@
             <button class="todo justify-self-center">To-do</button>
             <div class="columnleft grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2">
                 <!-- MOSTRAR TODAS LAS TAREAS -->
-                <div v-for="task in taskStore.tasks">
+                <div v-for="task in taskStore.tasks" :key="task.id">
                     <Task :task="task" v-if="task.isCompleted == false" class="flex justify-center" />
                 </div>
             </div>
@@ -54,7 +54,7 @@
             <button class="done justify-self-center">Done</button>
             <div class="columnright grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2">
                 <!-- MOSTRAR LAS TAREAS COMPLETADAS-->
-                <div v-for="task in taskStore.tasks">
+                <div v-for="task in taskStore.tasks" :key="task.id">
                     <Task :task="task" v-if="task.isCompleted == true" class="flex justify-center" />
                 </div>
             </div>
@@ -117,13 +117,14 @@ taskStore.setTask();
 }
 
 .columnleft {
+    display: grid;
+    grid-template-rows: auto;
     /* background-color: red; */
-    /* width: 50%; */
+
 }
 
 .columnright {
     /* background-color: blue; */
-    /* width: 50%; */
 }
 
 .todo {
@@ -164,6 +165,7 @@ taskStore.setTask();
 .buttonfill {
     /* padding-top: ; */
     background-color: #212936;
+    /* margin: 0; */
 }
 
 .buttonfill:hover {

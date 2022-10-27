@@ -20,7 +20,7 @@
                             </div>
                             <div class="botoncitos flex items-center gap-1.5">
                                 <!-- CHECK DONE -->
-                                <button @click="checkTask()" id="check-note"
+                                <button @click="checkTask()"
                                     class="w-8 h-8 rounded-full bg-gray-800 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                                     aria-label="check note" role="button">
                                     <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -61,7 +61,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
